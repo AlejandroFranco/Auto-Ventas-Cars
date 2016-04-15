@@ -1,0 +1,83 @@
+﻿@model AutoVentas.Models.Vehiculo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Está seguro?</h3>
+<div>
+    <h4>Vehiculo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.archivos.Any(arch => arch.tipo == AutoVentas.Models.TipoArchivo.JPG))
+        {
+            <dt>
+                Imagen
+            </dt>
+
+            <dd>
+                <img src="~/Archivo/ObtenerArchivo?id=@Model.archivos.First(f=> f.tipo==AutoVentas.Models.TipoArchivo.JPG).idArchivo" alt="imagen">
+            </dd>
+
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.Linea.nombreLinea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Linea.nombreLinea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca.proveedor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca.proveedor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo.ModeloID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo.ModeloID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tipo.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroMotor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroMotor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.color)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

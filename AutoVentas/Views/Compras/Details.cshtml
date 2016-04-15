@@ -1,0 +1,58 @@
+﻿@model AutoVentas.Models.Compra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Compra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numeroTarjeta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numeroTarjeta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalCompra)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCompra }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

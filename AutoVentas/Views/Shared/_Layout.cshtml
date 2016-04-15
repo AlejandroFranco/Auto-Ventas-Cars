@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Auto Ventas Car´s</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+
+            </div>
+            @if (Session["idUsuario"] != null)
+            {
+                //Administrador
+                if (Session["rol_idRol"].ToString() == "2")
+                {
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="@Url.Action("Index", "Home")" class="btn btn-link">DASHBOARD<span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                                    Listado<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("VEHÍCULOS", "Index", "Vehiculo")</li>
+                                    <li>@Html.ActionLink("MARCAS", "Index", "Marcas")</li>
+                                    <li>@Html.ActionLink("LINEAS", "Index", "Lineas")</li>
+                                    <li>@Html.ActionLink("MODELOS", "Index", "Modeloes")</li>
+                                    <li>@Html.ActionLink("TIPOS", "Index", "Tipoes")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Ventas", "Index", "Ventas")</li>
+                            <li>@Html.ActionLink("Usuarios", "Index", "Usuarios")</li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                                    @Session["username"]<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Salir", "Logout", "Cuenta")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                //Clientes
+                else if (Session["rol_idRol"].ToString() == "1"){
+
+
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="@Url.Action("Index", "Cliente")" class="btn btn-link">DASHBOARD CLIENTE<span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                            <li><a href="@Url.Action("Index", "Compras")" class="btn btn-link">COMPRAS<span class="glyphicon glyphicon-usd" aria-hidden="true"></span></a></li>
+                            <li role="presentation" class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">
+                                    @Session["username"]<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Salir", "Logout", "Cuenta")</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                }
+
+            }
+            else
+            {
+                <div class="navbar navbar-inverse navbar-fixed-top">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index", "Home")" class="btn btn-link">Home<span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+                        <li>@Html.ActionLink("Acerca de", "About", "Principal")</li>
+                        <li>@Html.ActionLink("Contacto", "Contact", "Principal")</li>
+                        <li><a href="@Url.Action("Login", "Cuenta")" class="btn btn-link">LOGIN<span class="glyphicon glyphicon-log-in" aria-hidden="true"></span></a></li>
+                        <li><a href="@Url.Action("Registro", "Cuenta")" class="btn btn-link">REGISTRO<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></a></li>
+                    </ul>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Auto Ventas Cars -Pablo Franco Systems.</p>
+        </footer>
+    </div>
+
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    
+</body>
+</html>

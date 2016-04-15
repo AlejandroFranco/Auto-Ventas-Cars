@@ -1,0 +1,39 @@
+﻿
+@model IEnumerable<AutoVentas.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Session["username"] != null)
+{
+    <h2>Bienvenido @Session["username"]</h2>
+}
+else {
+    <h2>Por favor inicie sesión para poder comprar.</h2>
+}
+
+    <div class="row" style="margin-top:20px;margin-bottom:20px;">
+        @foreach (var item in Model)
+            {
+            <div class="col-sm-4 col-md-3" style="margin-bottom:20px">
+                <div class="thumbnail">
+                    @if (item.archivos.Any(f => f.tipo == TipoArchivo.JPG))
+                {
+                        <img src="~/Archivo/ObtenerArchivo?id=@item.archivos.First(f => f.tipo == AutoVentas.Models.TipoArchivo.JPG).idArchivo" style="width: 180px ;height: 140px " class="img-rounded" alt="imagen" />
+                    }
+                    <div class="caption">
+                        <h3 style="text-align:center">@Html.DisplayFor(valor => item.Marca.proveedor)</h3>
+                        <p style="text-align:center">
+                            <strong>Linea: </strong> @Html.DisplayFor(modelItem => item.Linea.nombreLinea)<br>
+                            <strong>#Motor: </strong> @Html.DisplayFor(modelItem => item.numeroMotor)<br>
+                            <strong>IdModelo: </strong>@Html.DisplayFor(modelItem => item.Modelo.año)<br>
+                            <strong>Tipo:</strong>@Html.DisplayFor(modelItem => item.Tipo.nombre)<br>
+                            <strong>Color:</strong>@Html.DisplayFor(modelItem => item.color)<br>
+                        </p>
+                    <p>@Html.ActionLink("Comprar", "Create", "Compras", new { idLibro = item.idVehiculo }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>

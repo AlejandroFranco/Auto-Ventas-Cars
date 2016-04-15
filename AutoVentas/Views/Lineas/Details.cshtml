@@ -1,0 +1,26 @@
+﻿@model AutoVentas.Models.Linea
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Linea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombreLinea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreLinea)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LineaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
